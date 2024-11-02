@@ -1,0 +1,149 @@
+@font-face {
+    font-family: 'Dogica Pixel';
+    src: url('assets/fonts/dogicapixel.ttf');
+}
+
+@font-face {
+    font-family: 'Dogica Pixel';
+    font-weight: bold;
+    src: url('assets/fonts/dogicapixelbold.ttf');
+}
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+
+    background: var(--background);
+    justify-content: center;
+    align-items: center;
+    color: var(--primary);
+    font-size: 3.5vmin;
+    line-height: 1.5em;
+    font-family: 'Dogica Pixel';
+}
+
+.screen {
+    width: 90vmin;
+    /* max-height: 60vmin; */
+
+    &:not(.active) {
+        display: none;
+    }
+}
+
+p {
+    padding: 0.25em 0em;
+}
+
+button {
+    all: unset;
+    display: block;
+    width: 100%;
+    padding: 0.25em 0em;
+
+    &::before {
+        content: '> ';
+    }
+
+    &:hover,
+    &:focus {
+        background: var(--primary);
+        color: var(--background);
+    }
+
+    &.escape {
+        &::before {
+            content: '< ';
+            visibility: hidden;
+        }
+        &:hover::before {
+            visibility: visible;
+        }
+    }
+}
+
+h1 {
+    margin-bottom: 1em;
+}
+
+#game.screen {
+    align-items: center;
+    width: unset;
+    height: unset;
+    max-height: unset;
+}
+
+canvas {
+    display: block;
+    background: transparent;
+    box-sizing: content-box;
+}
+
+input[type='range'] {
+    all: unset;
+    width: 10em;
+    height: 0.5em;
+    background: var(--translucent);
+    display: inline-block;
+}
+
+::-webkit-slider-thumb {
+    appearance: none;
+    width: 0.5em;
+    height: 1em;
+    background: white;
+}
+
+#options.screen button:not(.escape)::before {
+    content: '';
+}
+
+p#tutorial {
+    font-size: 0.8em;
+    line-height: 1.5em;
+}
+
+.modal {
+    display: none;
+
+    position: absolute;
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, -50%);
+
+    flex-flow: column nowrap;
+    justify-content: center;
+    text-align: center;
+
+    background: var(--background);
+    padding: 1em 2em;
+    width: 90vmin;
+    box-shadow: 0 0 16em 8em var(--background);
+
+    &.active {
+        display: flex;
+    }
+    & button::before {
+        content: '' !important;
+    }
+
+    &#pause-menu {
+        width: 40vmin;
+        padding: 0.5em 1em;
+    }
+    &#end-menu {
+        width: 70vmin;
+    }
+}
